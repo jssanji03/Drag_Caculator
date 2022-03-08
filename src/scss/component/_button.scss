@@ -1,0 +1,16 @@
+//按鈕
+@each $name, $colors in $types {
+  .calBtn-#{$name} {
+    background:$colors;
+    color:#fff;
+    border: 1px solid darken($colors,5%);
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 50rem;
+    &:hover{
+        background-color: darken($colors,5%);
+        color: #fff;
+    }
+  }
+}
+
