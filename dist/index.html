@@ -8,49 +8,60 @@
 <script defer src="./index.bundle.js"></script><link href="./css/app.css" rel="stylesheet"></head>
 
 <body>
-    <div class="container-fluid">
-        <div class="container mt-3">
+    <section class="container-fluid">
+        <div class="container  mt-3">
             <div class="row">
                 <h2>Drag Calculator</h2>
             </div>
+            <!-- <div class="container">
+                <div class="d-flex">
+                    <div class="target d-flex" id="target1">
+                        <div class="box" id="box1" draggable="true">box1</div>
+                        <div class="box" id="box2" draggable="true">box2</div>
+                        <div class="box" id="box3" draggable="true">box3</div>
+                    </div>
+                    <div class="target d-flex" id="target2">
+            
+                    </div>
+                </div>
+            </div> -->
             <div class="row">
                 <div class="col-12">
-                    <div id="collection" class="row mt-2">
-                        <div id="menu" class="col-3 dragger_box" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <h4>請選取資料</h4>
-                            <!-- <div id="menu" class="col-12"></div> -->
-                            <!-- <div id="menu2" class="col-12"></div> -->
+                    <div class="row mt-2 js-collection">
+                        <div id="menu" class="col-4 item_box">
+                            <h5>請選取資料</h5>
                         </div>
-                        <div class="col-9">
+                        <div class="col-8">
                             <div class="row justify-content-between">
-                                <div id="num1" class="textBox col-12 border p-0" ondrop="drop(event)" ondragover="allowDrop(event)"
+                                <div id="num1" class="operation_box col-12 border p-0"
                                     style="height: 80px;"></div>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row justify-content-start mt-3">
-                        <div class="col-3"></div>
-                        <div class="col-9">
-                            <div class="row">
-                                <div class="col-4 p-0">
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">總價</span>
-                                        <input id="numTotal" type="number" class="form-control" value="0" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-8">
-                                    <input id="clear" type="button" class="btn btn-padding fontsEn" value="Clear" onclick="reset();">
-                                    <button class="btn btn-sm btn-warning" onclick="TwoDecimal()">TwoDecimal</button>
-                                </div>
-                            </div>
-                            <p class="third">詳細資料：<span id='detail'></span></p>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
+            <hr>
+            <div class="row justify-content-start mt-3">
+                <div class="col-4"></div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-4 p-0">
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">總價</span>
+                                <input id="numTotal" type="number" class="form-control" value="0" readonly>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <input type="button" class="btn btn-sm btn-info js-clear" value="Clear">
+                            <button class="btn btn-sm btn-warning js-Decimal" >TwoDecimal</button>
+                        </div>
+                    </div>
+                    <p class="third">詳細資料：<span id='detail'></span></p>
+                </div>
+            </div>
+        </section>
     </div>
+    <!-- <script src="./js/drag2.js"></script> -->
 </body>
 
 </html>

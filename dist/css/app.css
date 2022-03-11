@@ -7850,7 +7850,7 @@ time, mark, .mark, audio, video {
   border: 0;
   vertical-align: baseline;
   text-decoration: none;
-  font-family: "League Spartan", "Roboto", "Noto Sans TC", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+  font-family: "Roboto", "Noto Sans TC", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -7927,15 +7927,10 @@ table {
   border: 1px solid #a0bbcd;
   font-size: 14px;
   font-weight: 400;
-  border-radius: 5px; }
+  border-radius: 50rem; }
   .calBtn-operator:hover {
     background-color: #a0bbcd;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 400; }
-  .calBtn-operator:focus {
-    font-size: 16px;
-    font-weight: 400; }
+    color: #fff; }
 
 .calBtn-blue {
   background: #8cc4e9;
@@ -7943,15 +7938,10 @@ table {
   border: 1px solid #77b9e5;
   font-size: 14px;
   font-weight: 400;
-  border-radius: 5px; }
+  border-radius: 50rem; }
   .calBtn-blue:hover {
     background-color: #77b9e5;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 400; }
-  .calBtn-blue:focus {
-    font-size: 16px;
-    font-weight: 400; }
+    color: #fff; }
 
 .calBtn-red {
   background: #e66969;
@@ -7959,15 +7949,10 @@ table {
   border: 1px solid #e25353;
   font-size: 14px;
   font-weight: 400;
-  border-radius: 5px; }
+  border-radius: 50rem; }
   .calBtn-red:hover {
     background-color: #e25353;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 400; }
-  .calBtn-red:focus {
-    font-size: 16px;
-    font-weight: 400; }
+    color: #fff; }
 
 .calBtn-yellow {
   background: #f0ce38;
@@ -7975,15 +7960,10 @@ table {
   border: 1px solid #eec820;
   font-size: 14px;
   font-weight: 400;
-  border-radius: 5px; }
+  border-radius: 50rem; }
   .calBtn-yellow:hover {
     background-color: #eec820;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 400; }
-  .calBtn-yellow:focus {
-    font-size: 16px;
-    font-weight: 400; }
+    color: #fff; }
 
 .calBtn-green {
   background: #2fb3ac;
@@ -7991,15 +7971,10 @@ table {
   border: 1px solid #2a9f99;
   font-size: 14px;
   font-weight: 400;
-  border-radius: 5px; }
+  border-radius: 50rem; }
   .calBtn-green:hover {
     background-color: #2a9f99;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 400; }
-  .calBtn-green:focus {
-    font-size: 16px;
-    font-weight: 400; }
+    color: #fff; }
 
 .calBtn-dark {
   background: #57666d;
@@ -8007,15 +7982,13 @@ table {
   border: 1px solid #4c595f;
   font-size: 14px;
   font-weight: 400;
-  border-radius: 5px; }
+  border-radius: 50rem; }
   .calBtn-dark:hover {
     background-color: #4c595f;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 400; }
-  .calBtn-dark:focus {
-    font-size: 16px;
-    font-weight: 400; }
+    color: #fff; }
+
+[draggable="true"] {
+  cursor: move; }
 
 
 /*# sourceMappingURL=app.css.map*/

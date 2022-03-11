@@ -3202,250 +3202,202 @@ function withinMaxClamp(min, value, max) {
 /*!*************************!*\
   !*** ./src/js/drag2.js ***!
   \*************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var item = [{
-  id: "add",
-  title: '+',
-  math: '+',
-  price: '+',
-  color: 'operator'
-}, {
-  id: "minus ",
-  title: '-',
-  math: '-',
-  price: '-',
-  color: 'operator'
-}, {
-  id: "multiply",
-  title: 'x',
-  math: '*',
-  price: 'x',
-  color: 'operator'
-}, {
-  id: "divided",
-  title: '÷',
-  math: '/',
-  price: '÷',
-  color: 'operator'
-}, {
-  id: "left",
-  title: '(',
-  math: '(',
-  price: '(',
-  color: 'operator'
-}, {
-  id: "right",
-  title: ')',
-  math: ')',
-  price: ')',
-  color: 'operator'
-}, {
-  id: "drag1",
-  title: 'blue',
-  price: '100',
-  color: 'blue'
-}, {
-  id: "drag2",
-  title: 'red',
-  price: '80',
-  color: 'red'
-}, {
-  id: "drag3",
-  title: 'yellow',
-  price: '70',
-  color: 'yellow'
-}, {
-  id: "drag4",
-  title: 'gray',
-  price: '60',
-  color: 'green'
-}, {
-  id: "drag5",
-  title: 'dark',
-  price: '50',
-  color: 'dark'
-}];
-var num1 = document.getElementById('num1');
-var num1Count = document.querySelectorAll('.badge');
-var collection = document.getElementById('collection');
-var draggerBox = document.querySelector('.dragger_box'); // let dragger = document.querySelectorAll('.numBox');
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "dragTest": () => (/* binding */ dragTest)
+/* harmony export */ });
+/* provided dependency */ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+var dragTest = function dragTest() {
+  var pendingVal;
+  var displayVal = '0';
+  var evalStrAry = [];
+  var evalStrAry_math = [];
+  var item = [{
+    id: "add",
+    title: '+',
+    math: '+',
+    price: '+',
+    color: 'operator'
+  }, {
+    id: "minus",
+    title: '-',
+    math: '-',
+    price: '-',
+    color: 'operator'
+  }, {
+    id: "multiply",
+    title: 'x',
+    math: '*',
+    price: 'x',
+    color: 'operator'
+  }, {
+    id: "divided",
+    title: '÷',
+    math: '/',
+    price: '÷',
+    color: 'operator'
+  }, {
+    id: "left",
+    title: '(',
+    math: '(',
+    price: '(',
+    color: 'operator'
+  }, {
+    id: "right",
+    title: ')',
+    math: ')',
+    price: ')',
+    color: 'operator'
+  }, {
+    id: "drag1",
+    title: 'blue',
+    price: '100',
+    color: 'blue'
+  }, {
+    id: "drag2",
+    title: 'red',
+    price: '80',
+    color: 'red'
+  }, {
+    id: "drag3",
+    title: 'yellow',
+    price: '70',
+    color: 'yellow'
+  }, {
+    id: "drag4",
+    title: 'gray',
+    price: '60',
+    color: 'green'
+  }, {
+    id: "drag5",
+    title: 'dark',
+    price: '50',
+    color: 'dark'
+  }];
 
-var dropper = document.querySelectorAll('.textBox');
-var disPlayDetail = document.getElementById('detail');
-var disPlayresult = document.querySelector('#numTotal');
-var ac = document.getElementById('clear');
-var pendingVal;
-var displayVal = '0';
-var evalStrAry = [];
-var evalStrAry_math = [];
-item.forEach(function (obj, key) {
-  //function(item,index) //callback function
-  if (obj.math) {
-    var htmlTemplate = '';
-    htmlTemplate = htmlTemplate + "<span draggable=\"true\" ondragstart=\"drag(event)\" ondragover=\"drop_handler(event)\"class=\"m-1 badge math calBtn-".concat(obj.color, " rounded-pill\" id=\"").concat(obj.id, "\" data-math=\"").concat(obj.math, "\" data-value=\"").concat(obj.math, "\">  \n                  ").concat(obj.title, "\n                </span>");
-    var menu = document.querySelector('#menu');
-    menu.innerHTML += htmlTemplate;
-  } else {
-    var _htmlTemplate = '';
-    _htmlTemplate = _htmlTemplate + "<span draggable=\"true\" ondragstart=\"drag(event)\" class=\"m-1 badge numBox calBtn-".concat(obj.color, " rounded-pill\" ondragover=\"drop_handler(event)\" id=\"").concat(obj.id, "\" data-value=\"").concat(obj.price, "\">  \n                  ").concat(obj.title).concat(obj.price, "\n                </span>");
+  function init() {
+    item.forEach(function (obj, key) {
+      if (obj.math) {
+        var htmlTemplate = '';
+        htmlTemplate = htmlTemplate + "<span draggable=\"true\" class=\"m-1 badge calBtn-".concat(obj.color, " numItems\" id=\"").concat(obj.id, "\" data-math=\"").concat(obj.math, "\" data-value=\"").concat(obj.math, "\">  \n              ").concat(obj.title, "\n            </span>");
+        var menu = document.querySelector('#menu');
+        menu.innerHTML += htmlTemplate;
+      } else {
+        var _htmlTemplate = '';
+        _htmlTemplate = _htmlTemplate + "<span draggable=\"true\" class=\"m-1 badge calBtn-".concat(obj.color, " numItems\"id=\"").concat(obj.id, "\" data-value=\"").concat(obj.price, "\">  \n              ").concat(obj.title).concat(obj.price, "\n            </span>");
 
-    var _menu = document.querySelector('#menu');
+        var _menu = document.querySelector('#menu');
 
-    _menu.innerHTML += _htmlTemplate;
+        _menu.innerHTML += _htmlTemplate;
+      }
+    });
   }
-});
 
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function drag(ev) {
-  ev.dataTransfer.setData("application/json", ev.target.dataset.value); // ev.dataTransfer.setData("application/json", ev.target.dataset.math);
-
-  ev.dataTransfer.setData("text/plain", ev.target.id);
-  ev.target.style.opacity = "0.4"; // let index = ev.target.index
-  // console.log(index);
-  // ev.dataTransfer.setData('text/plain', ev.target.index);
-
-  ev.dataTransfer.effectAllowed = 'move';
-}
-
-num1.addEventListener("dragenter", function (e) {
-  e.target.style.background = "#ebf8ff";
-});
-num1.addEventListener("dragend", function (e) {
-  e.target.style.opacity = "1";
-});
-num1.addEventListener("dragleave", function (e) {
-  e.target.style.background = "#FFF";
-});
-num1Count.forEach(function (item) {
-  item.addEventListener("dragstart", function (e) {
-    e.target.style.background = "#FFF";
-    e.dataTransfer.effectAllowed = "none";
-    e.dataTransfer.dropEffect = 'none';
-  });
-  item.addEventListener("dragover", function (e) {
-    // e.dataTransfer.dropEffect = 'none';
-    // e.dataTransfer.effectAllowed = "none";
-    if (e.preventDefault) {
-      e.preventDefault();
+  init();
+  $(".numItems").on({
+    "dragstart": function dragstart(event) {
+      event.originalEvent.dataTransfer.setData("application/json", event.target.dataset.value);
+      event.originalEvent.dataTransfer.setData("text/plain", event.target.id);
+    },
+    "dragend": function dragend() {
+      $(".target").removeClass("over");
+      console.log("numItems dragend");
     }
-
-    e.dataTransfer.dropEffect = 'move';
-    return false;
   });
-});
-draggerBox.addEventListener("dragenter", function (e) {
-  e.preventDefault();
-  e.target.style.background = "#ebf8ff";
-});
-draggerBox.addEventListener("dragleave", function (e) {
-  e.preventDefault();
-  e.target.style.background = "#FFF";
-});
-draggerBox.addEventListener("dragend", function (e) {
-  e.target.style.opacity = "1";
-  var evalStrAry_length = evalStrAry.length;
-  var evalStrAry_math_length = evalStrAry_math.length;
-  evalStrAry = evalStrAry.slice(0, evalStrAry_length - 1);
-  evalStrAry_math = evalStrAry_math.slice(0, evalStrAry_math_length - 1);
-  var evaluation_math = eval(evalStrAry_math.join(' '));
-  console.log(evalStrAry);
-  console.log(evalStrAry.length);
+  $(".operation_box").on({
+    "dragenter": function dragenter(event) {
+      event.preventDefault();
+      console.log("dragenter");
+    },
+    "dragover": function dragover(event) {
+      event.preventDefault();
+      $(this).addClass("over");
+      console.log("dragover");
+    },
+    "dragleave": function dragleave() {
+      console.log("dragleave");
+      $(".target").removeClass("over");
+    },
+    "dragend": function dragend(event) {
+      event.target.remove();
+      evalStrAry = evalStrAry.filter(function (item) {
+        return item != event.target.dataset.value;
+      });
+      evalStrAry_math = evalStrAry_math.filter(function (item) {
+        return item != event.target.dataset.value;
+      }); // 計算總數
 
-  if (displayVal === '') {
+      var evaluation_math = eval(evalStrAry_math.join('')); // 運算過程
+
+      var evaluation_list = evalStrAry.join('');
+      $("#numTotal").val(evaluation_math);
+      $("#detail").text(evaluation_list);
+      console.log("evalStrAry", evalStrAry);
+      console.log("evalStrAry_math", evalStrAry_math);
+    },
+    "drop": function drop(event) {
+      event.preventDefault(); // event.stopPropagation(); //停止事件氣泡現象
+
+      var id = event.originalEvent.dataTransfer.getData('text/plain');
+      $("#" + id).clone().appendTo(event.target);
+    }
+  });
+  $(".item_box").on({
+    "dragend": function dragend(event) {
+      var btnText = event.target.dataset.value;
+
+      if (displayVal === '0') {
+        displayVal = '';
+        displayVal += btnText;
+      } else {
+        displayVal += btnText;
+      }
+
+      performOperation(btnText);
+    }
+  });
+  $(".js-clear").on('click', function () {
     displayVal = '0';
+    pendingVal = undefined;
+    evalStrAry = [];
+    evalStrAry_math = [];
+    var html;
+    $("#numTotal").val(displayVal);
+    $("#detail").text(displayVal);
+    html = $(".js-collection").html();
+    html = window.location.reload();
+  });
+  $(".js-Decimal").on("click", TwoDecimal);
+
+  function TwoDecimal() {
+    var Num = $("#numTotal").val();
+    var TwoDecimal = Math.round(Num * 100) / 100;
+    $("#numTotal").val(TwoDecimal);
   }
 
-  disPlayresult.value = evaluation_math;
-  disPlayDetail.innerText = evalStrAry.join(' ');
-}, false);
+  function performOperation(event) {
+    console.log(event);
 
-function drop_handler(ev) {
-  ev.preventDefault();
-  ev.dataTransfer.dropEffect = "none";
-  ev.dataTransfer.effectAllowed = "none";
-}
+    if ($(".item_box")) {
+      pendingVal = event;
+      displayVal = '0';
+      $("#numTotal").val(pendingVal);
+      evalStrAry.push(pendingVal);
+      evalStrAry_math.push(pendingVal); // 計算總數
 
-function drop(ev) {
-  ev.preventDefault();
-  ev.target.style.opacity = "1";
-  var data = ev.dataTransfer.getData("text/plain");
-  var data2 = ev.dataTransfer.getData("application/json"); // var dataMath = parseInt(ev.dataTransfer.getData("application/json"));
-  // console.log(typeof(data2));
+      var evaluation_math = eval(evalStrAry_math.join('')); // 運算過程
 
-  ev.target.appendChild(document.getElementById(data));
-  ev.target.style.background = "#FFF";
-}
-
-var updateDisplayVal = function updateDisplayVal(e) {
-  // console.log(e.target);
-  btnText = e.target.dataset.value;
-
-  if (displayVal === '0') {
-    displayVal = '';
-    displayVal += btnText;
-  } else {
-    displayVal += btnText;
+      var evaluation_list = evalStrAry.join('');
+      $("#numTotal").val(evaluation_math);
+      $("#detail").text(evaluation_list);
+    }
   }
-
-  console.log(displayVal);
-  disPlayresult.value = displayVal;
-  disPlayDetail.innerText = displayVal;
 };
 
-for (var i = 0; i < dropper.length; i++) {
-  dropper[i].addEventListener('dragend', updateDisplayVal, false);
-}
 
-var performOperation = function performOperation(e) {
-  // let operator = e.target.dataset.math; // 實際運算 ex 6/3
-  // console.log(operator);
-  if (disPlayDetail) {
-    pendingVal = displayVal;
-    displayVal = '0';
-    disPlayresult.value = pendingVal;
-    evalStrAry.push(pendingVal);
-    evalStrAry_math.push(pendingVal);
-    var evaluation_math = eval(evalStrAry_math.join(' '));
-    console.log(evalStrAry); // console.log(evalStrAry_math);
-
-    var evaluation_list = evalStrAry.join(' ');
-    disPlayresult.value = evaluation_math;
-    disPlayDetail.innerText = evaluation_list;
-  }
-};
-
-for (var _i = 0; _i < dropper.length; _i++) {
-  dropper[_i].addEventListener('dragend', performOperation, false);
-}
-
-ac.addEventListener('click', function () {
-  displayVal = '0';
-  pendingVal = undefined;
-  evalStrAry = [];
-  evalStrAry_math = [];
-  var html;
-  disPlayresult.value = displayVal;
-  disPlayDetail.innerText = displayVal;
-  html = collection.innerHTML;
-  html = window.location.reload();
-}, false); // function reset() {
-//     // collection.innerHTML = html;
-//     window.location.reload();
-// }
-// let html;
-// window.onload = function(){
-//     html = collection.innerHTML;
-// };
-
-function TwoDecimal() {
-  var Num = disPlayresult.value;
-  var TwoDecimal = Math.round(Num * 100) / 100;
-  disPlayresult.value = TwoDecimal;
-}
 
 /***/ }),
 
@@ -19462,14 +19414,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 /* harmony import */ var _scss_index_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scss/index.scss */ "./src/scss/index.scss");
 /* harmony import */ var _js_drag2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/drag2 */ "./src/js/drag2.js");
-/* harmony import */ var _js_drag2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_drag2__WEBPACK_IMPORTED_MODULE_3__);
 //import 套件
 
  //import scss
 
  //import js
+// import './js/drag2'
 
 
+(0,_js_drag2__WEBPACK_IMPORTED_MODULE_3__.dragTest)(); // import * as hello from './js/drag2'
+// hello.test()
+// hello.allowDrop()
+// hello.drag()
+// display();
+// myModule.allowDrop();
+// myModule.drag();
+// myModule.drop_handler();
+// myModule.drop();
+// myModule.TwoDecimal();
 
 if (false) {}
 })();
