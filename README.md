@@ -2,7 +2,7 @@
 
 # [ Drag Caculator ]
 
-[線上Demo]( https://jssanji03.github.io/Excel_paste/)
+[線上Demo]( https://jssanji03.github.io/Drag_Caculator/)
 
 使用拖曳的方式做計算。
 ＃資料來源為json格式
