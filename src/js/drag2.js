@@ -49,31 +49,31 @@ const dragTest = () => {
         },
         {
             id: "drag1",
-            title: 'blue',
+            title: '品項1',
             price: '100',
             color: 'blue'
         },
         {
             id: "drag2",
-            title: 'red',
+            title: '品項2',
             price: '80',
             color: 'red'
         },
         {
             id: "drag3",
-            title: 'yellow',
+            title: '品項3',
             price: '70',
             color: 'yellow'
         },
         {
             id: "drag4",
-            title: 'gray',
+            title: '品項4',
             price: '60',
             color: 'green'
         },
         {
             id: "drag5",
-            title: 'dark',
+            title: '品項5',
             price: '50',
             color: 'dark'
         }
@@ -90,7 +90,7 @@ const dragTest = () => {
             } else {
                 let htmlTemplate = ''
                 htmlTemplate = htmlTemplate + `<span draggable="true" class="m-1 badge calBtn-${obj.color} numItems"id="${obj.id}" data-value="${obj.price}">  
-              ${obj.title}${obj.price}
+              ${obj.title}
             </span>`;
                 const menu = document.querySelector('#menu');
                 menu.innerHTML += htmlTemplate
