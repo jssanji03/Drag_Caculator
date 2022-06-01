@@ -3253,27 +3253,27 @@ var dragTest = function dragTest() {
     color: 'operator'
   }, {
     id: "drag1",
-    title: 'blue',
+    title: '品項1',
     price: '100',
     color: 'blue'
   }, {
     id: "drag2",
-    title: 'red',
+    title: '品項2',
     price: '80',
     color: 'red'
   }, {
     id: "drag3",
-    title: 'yellow',
+    title: '品項3',
     price: '70',
     color: 'yellow'
   }, {
     id: "drag4",
-    title: 'gray',
+    title: '品項4',
     price: '60',
     color: 'green'
   }, {
     id: "drag5",
-    title: 'dark',
+    title: '品項5',
     price: '50',
     color: 'dark'
   }];
@@ -3287,7 +3287,7 @@ var dragTest = function dragTest() {
         menu.innerHTML += htmlTemplate;
       } else {
         var _htmlTemplate = '';
-        _htmlTemplate = _htmlTemplate + "<span draggable=\"true\" class=\"m-1 badge calBtn-".concat(obj.color, " numItems\"id=\"").concat(obj.id, "\" data-value=\"").concat(obj.price, "\">  \n              ").concat(obj.title).concat(obj.price, "\n            </span>");
+        _htmlTemplate = _htmlTemplate + "<span draggable=\"true\" class=\"m-1 badge calBtn-".concat(obj.color, " numItems\"id=\"").concat(obj.id, "\" data-value=\"").concat(obj.price, "\">  \n              ").concat(obj.title, "\n            </span>");
 
         var _menu = document.querySelector('#menu');
 
@@ -19419,19 +19419,9 @@ __webpack_require__.r(__webpack_exports__);
  //import scss
 
  //import js
-// import './js/drag2'
 
 
-(0,_js_drag2__WEBPACK_IMPORTED_MODULE_3__.dragTest)(); // import * as hello from './js/drag2'
-// hello.test()
-// hello.allowDrop()
-// hello.drag()
-// display();
-// myModule.allowDrop();
-// myModule.drag();
-// myModule.drop_handler();
-// myModule.drop();
-// myModule.TwoDecimal();
+(0,_js_drag2__WEBPACK_IMPORTED_MODULE_3__.dragTest)();
 
 if (false) {}
 })();
